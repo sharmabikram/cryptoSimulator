@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "//SPRING//DTD BEAN 2.0//EN" "HTTP://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+<bean id = "RSA" class = "Algorithms.Asymmetric.RSA"></bean>
+<bean id = "ElGamal" class = "Algorithms.Asymmetric.ElGamal"></bean>
+<bean id = "EllipticCurve" class = "Algorithms.Asymmetric.EllipticCurve"></bean>
+<bean id = "BlowFish" class = "Algorithms.Symmetric.BlowFish"></bean>
+<bean id = "DES" class = "Algorithms.Symmetric.DES"></bean>
+<bean id = "AES" class = "Algorithms.Symmetric.AES"></bean>
+<bean id = "SimulateGUI" class = "GUI.SimulateGUI"></bean>
+<bean id = "MD5" class = "Algorithms.Hash.MD5"></bean>
+<bean id = "SHA-1" class = "Algorithms.Hash.SHA1"></bean>
+
+</beans>
