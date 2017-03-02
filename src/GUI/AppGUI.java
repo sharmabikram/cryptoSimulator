@@ -543,9 +543,9 @@ public class AppGUI extends javax.swing.JFrame {
                     }
                     reader.close();
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(SimulateGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 } catch (IOException ex) {
-                    Logger.getLogger(SimulateGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
             }
         }
@@ -610,17 +610,17 @@ public class AppGUI extends javax.swing.JFrame {
         );
         
        try {
-           ChartUtilities.saveChartAsJPEG(new File("E:\\chart.jpg"), chart, 500, 300);
+           ChartUtilities.saveChartAsJPEG(new File("chart.jpg"), chart, 500, 300);
            showImage();
        } catch (IOException ex) {
-           Logger.getLogger(SimulateGUI.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
        }
        
        
     }
     
     public void showImage() throws IOException{
-        BufferedImage image = ImageIO.read(new File("E:\\chart.jpg"));
+        BufferedImage image = ImageIO.read(new File("chart.jpg"));
         ImageIcon icon = new ImageIcon(image);
         graphLabel.setIcon(icon);
     }

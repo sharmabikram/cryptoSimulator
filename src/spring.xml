@@ -7,7 +7,7 @@
 <bean id = "BlowFish" class = "Algorithms.Symmetric.BlowFish"></bean>
 <bean id = "DES" class = "Algorithms.Symmetric.DES"></bean>
 <bean id = "AES" class = "Algorithms.Symmetric.AES"></bean>
-<bean id = "SimulateGUI" class = "GUI.SimulateGUI"></bean>
+<bean id = "AppGUI" class = "GUI.AppGUI"></bean>
 <bean id = "MD5" class = "Algorithms.Hash.MD5"></bean>
 <bean id = "SHA-1" class = "Algorithms.Hash.SHA1"></bean>
 
