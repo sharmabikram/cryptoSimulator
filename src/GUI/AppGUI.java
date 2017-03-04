@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,6 +23,9 @@ import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.xml.bind.DatatypeConverter;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jfree.chart.ChartFactory;
@@ -53,6 +57,8 @@ public class AppGUI extends javax.swing.JFrame {
    byte encrypted[];
    byte decrypted[];
    byte plainBytes[];
+   FileInputStream iStream;
+   
    long sTime, eTime;
    CrypticObject crypt;
    
@@ -110,6 +116,7 @@ public class AppGUI extends javax.swing.JFrame {
         dTimeLabel = new javax.swing.JLabel();
         dTimeField = new javax.swing.JTextField();
         dUnitLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -273,6 +280,13 @@ public class AppGUI extends javax.swing.JFrame {
 
         dUnitLabel.setText("ms");
 
+        jButton1.setText("Encrypt Large Files");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout simPanelLayout = new javax.swing.GroupLayout(simPanel);
         simPanel.setLayout(simPanelLayout);
         simPanelLayout.setHorizontalGroup(
@@ -282,7 +296,6 @@ public class AppGUI extends javax.swing.JFrame {
                     .addGroup(simPanelLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(browseButton)
                             .addGroup(simPanelLayout.createSequentialGroup()
                                 .addComponent(plainLabel)
                                 .addGap(231, 231, 231)
@@ -290,7 +303,12 @@ public class AppGUI extends javax.swing.JFrame {
                                 .addGap(217, 217, 217)
                                 .addComponent(decryptedLabel))
                             .addGroup(simPanelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(simPanelLayout.createSequentialGroup()
+                                        .addComponent(browseButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(58, 58, 58)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)
@@ -340,36 +358,39 @@ public class AppGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(browseButton)
-                .addGap(59, 59, 59)
                 .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(techniqueLabel))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(techniqueCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(algoLabel))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(algoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(applyButton))
-                .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(sizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eTimeLabel)
-                            .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dTimeLabel)
-                            .addComponent(dTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(browseButton)
+                        .addGap(59, 59, 59)
+                        .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(techniqueLabel))
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(techniqueCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(algoLabel))
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(algoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(applyButton))
+                        .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(sizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(eTimeLabel)
+                                    .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dTimeLabel)
+                                    .addComponent(dTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jButton1))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
@@ -508,10 +529,8 @@ public class AppGUI extends javax.swing.JFrame {
         plainText = plainArea.getText();
         int length = plainText.length();
         
-        technique = techniqueCombo.getSelectedItem().toString();
         algo_used = algoCombo.getSelectedItem().toString();
         sizeText.setText(""+((float)plainText.length()/1024));
-        
         context = new ClassPathXmlApplicationContext("spring.xml");
         algo = (CrypticAlgo)context.getBean(algo_used);
         
@@ -553,7 +572,7 @@ public class AppGUI extends javax.swing.JFrame {
         
         
         crypt = algo.encrypt(plainText.getBytes());
-        cipherArea.setText((""+javax.xml.bind.DatatypeConverter.printHexBinary(crypt.data)).toLowerCase());
+        cipherArea.setText((""+DatatypeConverter.printHexBinary(crypt.data)).toLowerCase());
         eTimeField.setText(""+crypt.time);
         
         crypt = algo.decrypt(crypt.data);
@@ -573,7 +592,7 @@ public class AppGUI extends javax.swing.JFrame {
             returnVal = openTextFile.showOpenDialog(simPanel);
             if(returnVal == JFileChooser.APPROVE_OPTION){
                 File file = openTextFile.getSelectedFile();
-                plainArea.setText("");
+                /*plainArea.setText("");
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
                     while((line = reader.readLine()) != null){
@@ -584,6 +603,13 @@ public class AppGUI extends javax.swing.JFrame {
                     ex.printStackTrace();
                 } catch (IOException ex) {
                     ex.printStackTrace();
+                }*/
+                try {
+                    iStream = new FileInputStream(file);
+                    plainBytes = new byte[iStream.available()];
+                    iStream.read(plainBytes);
+                } catch (Exception ex) {
+                    Logger.getLogger(AppGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -633,6 +659,26 @@ public class AppGUI extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        sizeText.setText(""+(float)plainBytes.length/(1024*1024));
+        algo_used = algoCombo.getSelectedItem().toString();
+        context = new ClassPathXmlApplicationContext("spring.xml");
+        algo = (CrypticAlgo)context.getBean(algo_used);
+        
+        crypt = algo.encrypt(plainBytes);
+        eTimeField.setText(""+(float)crypt.time/1000);
+        
+        plainBytes = null;
+        System.gc();
+        
+        crypt = algo.decrypt(crypt.data);
+        dTimeField.setText(""+(float)crypt.time/1000);
+        
+        JOptionPane.showMessageDialog(modulePane, "Encryption Successful", "",INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void plotGraph(){
        
         
@@ -720,6 +766,7 @@ public class AppGUI extends javax.swing.JFrame {
     private javax.swing.JLabel eTimeLabel;
     private javax.swing.JLabel eUnitLabel;
     private javax.swing.JLabel graphLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
