@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.security.Security;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.xml.bind.DatatypeConverter;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -49,6 +51,7 @@ public class AppGUI extends javax.swing.JFrame {
    String hash[] = new String[] {"MD5", "SHA-1"};
    byte encrypted[];
    byte decrypted[];
+   byte plainBytes[];
    long sTime, eTime;
    
    int dataSet[][] = new int[2][10];
@@ -117,7 +120,8 @@ public class AppGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoSimulator");
         setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
-        setPreferredSize(new java.awt.Dimension(850, 600));
+        setLocation(new java.awt.Point(300, 80));
+        setPreferredSize(new java.awt.Dimension(825, 600));
         setResizable(false);
 
         RSACheck.setText("RSA");
@@ -272,48 +276,53 @@ public class AppGUI extends javax.swing.JFrame {
         simPanelLayout.setHorizontalGroup(
             simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(simPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(browseButton)
                     .addGroup(simPanelLayout.createSequentialGroup()
-                        .addComponent(plainLabel)
-                        .addGap(231, 231, 231)
-                        .addComponent(cipherLabel)
-                        .addGap(217, 217, 217)
-                        .addComponent(decryptedLabel))
+                        .addGap(23, 23, 23)
+                        .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(browseButton)
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addComponent(plainLabel)
+                                .addGap(231, 231, 231)
+                                .addComponent(cipherLabel)
+                                .addGap(217, 217, 217)
+                                .addComponent(decryptedLabel))
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(simPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addComponent(techniqueLabel)
-                        .addGap(10, 10, 10)
-                        .addComponent(techniqueCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(algoLabel)
-                        .addGap(10, 10, 10)
-                        .addComponent(algoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(applyButton))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addComponent(sizeLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(eTimeLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dTimeLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(dTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(104, 104, 104)
+                        .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addComponent(techniqueLabel)
+                                .addGap(10, 10, 10)
+                                .addComponent(techniqueCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(algoLabel)
+                                .addGap(10, 10, 10)
+                                .addComponent(algoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(applyButton))
+                            .addGroup(simPanelLayout.createSequentialGroup()
+                                .addComponent(sizeLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(eTimeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dTimeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         simPanelLayout.setVerticalGroup(
             simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,9 +337,9 @@ public class AppGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(browseButton)
-                .addGap(22, 22, 22)
+                .addGap(59, 59, 59)
                 .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(simPanelLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -350,26 +359,16 @@ public class AppGUI extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(sizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(eTimeLabel))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(simPanelLayout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eTimeLabel)
+                            .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dTimeLabel)
-                            .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(dTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(simPanelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                            .addComponent(dTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         modulePane.setLayer(analPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -502,16 +501,55 @@ public class AppGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_sizeTextActionPerformed
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
-
+        
+        int beg = 0, end;
         plainText = plainArea.getText();
+        int length = plainText.length();
+        
         technique = techniqueCombo.getSelectedItem().toString();
         algo_used = algoCombo.getSelectedItem().toString();
-        sizeText.setText(""+((float)plainText.length())/1024);
-
+        sizeText.setText(""+((float)plainText.length()/1024));
+        
         context = new ClassPathXmlApplicationContext("spring.xml");
         algo = (CrypticAlgo)context.getBean(algo_used);
+        
+        /*if(algo == (CrypticAlgo)context.getBean("RSA"))
+        {
+            sTime = System.currentTimeMillis();
+            while(beg < length){
+                end = (beg+245>=length)?(length):(beg+245);
+                plainBytes = plainText.substring(beg, end).getBytes();
+                encrypted = algo.encrypt(plainBytes);
+                decrypted = algo.decrypt(encrypted);
+                cipherArea.append((""+DatatypeConverter.printHexBinary(encrypted)).toLowerCase());
+                decryptedArea.append(new String(decrypted));
+                beg += 245;
+                
+            }
+            eTime = System.currentTimeMillis();
+            eTimeField.setText(""+(eTime-sTime));
+            return;
+        }
+        if(algo == (CrypticAlgo)context.getBean("ElGamal"))
+        {
+            sTime = System.currentTimeMillis();
+            while(beg < length){
+                end = (beg+20>=length)?(length):(beg+20);
+                plainBytes = plainText.substring(beg, end).getBytes();
+                encrypted = algo.encrypt(plainBytes);
+                decrypted = algo.decrypt(encrypted);
+                cipherArea.append((""+DatatypeConverter.printHexBinary(encrypted)).toLowerCase());
+                decryptedArea.append(new String(decrypted));
+                beg += 20;
+                
+            }
+            eTime = System.currentTimeMillis();
+            eTimeField.setText(""+(eTime-sTime));
+            return;
+        }*/
+        
+        
         sTime = System.currentTimeMillis();
-
         encrypted = algo.encrypt(plainText.getBytes());
         eTime = System.currentTimeMillis();
         cipherArea.setText((""+javax.xml.bind.DatatypeConverter.printHexBinary(encrypted)).toLowerCase());
@@ -522,7 +560,6 @@ public class AppGUI extends javax.swing.JFrame {
         decryptedArea.setText(""+new String(decrypted));
         dTimeText.setText(""+(eTime-sTime));
 
-        //plotGraph();
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed

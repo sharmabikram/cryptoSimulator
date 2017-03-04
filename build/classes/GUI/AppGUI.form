@@ -64,8 +64,11 @@
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
       <Rectangle value="[0, 0, 1024, 768]"/>
     </Property>
+    <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
+      <Point value="[300, 80]"/>
+    </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[850, 600]"/>
+      <Dimension value="[825, 600]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -207,54 +210,63 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="browseButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="plainLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="231" pref="231" max="-2" attributes="0"/>
-                              <Component id="cipherLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="217" pref="217" max="-2" attributes="0"/>
-                              <Component id="decryptedLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="browseButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="plainLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="231" pref="231" max="-2" attributes="0"/>
+                                      <Component id="cipherLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="217" pref="217" max="-2" attributes="0"/>
+                                      <Component id="decryptedLabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jScrollPane1" min="-2" pref="220" max="-2" attributes="0"/>
+                                      <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane2" min="-2" pref="220" max="-2" attributes="0"/>
+                                      <EmptySpace min="53" pref="53" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane3" min="-2" pref="220" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="220" max="-2" attributes="0"/>
-                              <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="220" max="-2" attributes="0"/>
-                              <EmptySpace min="53" pref="53" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="220" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="techniqueLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="techniqueCombo" min="-2" pref="187" max="-2" attributes="0"/>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="algoLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="algoCombo" min="-2" pref="96" max="-2" attributes="0"/>
-                              <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
-                              <Component id="applyButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="sizeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="sizeText" min="-2" pref="93" max="-2" attributes="0"/>
-                              <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
-                              <Component id="eTimeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="eTimeField" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="eUnitLabel" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dTimeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Component id="dTimeText" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                              <Component id="dUnitLabel" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="techniqueLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="techniqueCombo" min="-2" pref="187" max="-2" attributes="0"/>
+                                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                      <Component id="algoLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="algoCombo" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
+                                      <Component id="applyButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="sizeLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="sizeText" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="eTimeLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="eTimeField" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="eUnitLabel" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="dTimeLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="dTimeText" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="dUnitLabel" min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -273,9 +285,9 @@
                           <Component id="jScrollPane2" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="browseButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
@@ -301,34 +313,19 @@
                               <Component id="sizeLabel" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Component id="sizeText" min="-2" pref="24" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="eTimeLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="eTimeField" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="dTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sizeText" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="eTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="eTimeField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="eUnitLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="dTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dTimeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dUnitLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="dTimeText" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="dUnitLabel" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace pref="115" max="32767" attributes="0"/>
+                      <EmptySpace pref="93" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
