@@ -1,5 +1,6 @@
 package Algorithms.Asymmetric;
 
+import Algorithms.CrypticObject;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -28,7 +29,9 @@ public class EllipticCurve implements Algorithms.CrypticAlgo{
     SecureRandom random;
     PublicKey pubKey;
     
-    byte[] raw; 
+    byte[] encrypted, decrypted;
+    long sTime, eTime;
+    CrypticObject crypt = new CrypticObject(); 
     Cipher cipher;
     private static XYSeries point;
     static {
@@ -53,29 +56,39 @@ public class EllipticCurve implements Algorithms.CrypticAlgo{
     }
     
     @Override
-    public byte[] encrypt(byte[] message) {
+    public CrypticObject encrypt(byte[] message) {
         byte[] encrypted = "".getBytes();
         try{
             cipher = Cipher.getInstance("ECIES");
             cipher.init(Cipher.ENCRYPT_MODE, pubKey, random);
+            sTime = System.currentTimeMillis();
             encrypted = cipher.doFinal(message);
+            eTime = System.currentTimeMillis();
         }catch(Exception e){
             e.printStackTrace();
         }
-        return encrypted;
+        
+        crypt.data = encrypted;
+        crypt.time = eTime - sTime;
+        return crypt;
     }
 
     @Override
-    public byte[] decrypt(byte[] message) {
+    public CrypticObject decrypt(byte[] message) {
         byte[] decrypted = "".getBytes();
         try{
             cipher = Cipher.getInstance("ECIES");
             cipher.init(Cipher.DECRYPT_MODE,  privKey, random);
+            sTime = System.currentTimeMillis();
             decrypted = cipher.doFinal(message);
+            eTime = System.currentTimeMillis();
         }catch(Exception e){
             e.printStackTrace();
         }
-        return decrypted;
+        
+        crypt.data = decrypted;
+        crypt.time = eTime - sTime;
+        return crypt;
     }
 
     

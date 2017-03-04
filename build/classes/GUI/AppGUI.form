@@ -259,7 +259,7 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="dTimeLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="dTimeText" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="dTimeField" min="-2" pref="38" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="dUnitLabel" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
@@ -320,7 +320,7 @@
                                   <Component id="eTimeField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="eUnitLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="dTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dTimeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dTimeField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="dUnitLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -342,7 +342,7 @@
                   <StringArray count="3">
                     <StringItem index="0" value="RSA"/>
                     <StringItem index="1" value="ElGamal"/>
-                    <StringItem index="2" value="EllipticCurve"/>
+                    <StringItem index="2" value="Elliptic-Curve"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -497,12 +497,12 @@
                 <Property name="text" type="java.lang.String" value="Decrypition Time"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="dTimeText">
+            <Component class="javax.swing.JTextField" name="dTimeField">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dTimeTextActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dTimeFieldActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="dUnitLabel">

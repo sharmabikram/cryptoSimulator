@@ -5,6 +5,7 @@
  */
 package Algorithms.Symmetric;
 
+import Algorithms.CrypticObject;
 import java.security.*;
 import javax.crypto.*;
 import javax.crypto.spec.*;
@@ -19,6 +20,9 @@ public class BlowFish implements Algorithms.CrypticAlgo{
     static SecretKeySpec skeySpec; 
     Cipher cipher;
     
+    byte[] encrypted, decrypted;
+    long sTime, eTime;
+    CrypticObject crypt = new CrypticObject(); 
     private static XYSeries point;
     static {
         point = new XYSeries("BolwFish");
@@ -39,29 +43,39 @@ public class BlowFish implements Algorithms.CrypticAlgo{
         skeySpec = new SecretKeySpec(raw, "Blowfish");
     }
     @Override
-    public byte[] encrypt(byte[] message) {
+    public CrypticObject encrypt(byte[] message) {
         byte[] encrypted = "".getBytes();
         try{
             cipher = Cipher.getInstance("Blowfish");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
-        encrypted = cipher.doFinal(message);
+            sTime = System.currentTimeMillis();
+            encrypted = cipher.doFinal(message);
+            eTime = System.currentTimeMillis();
         }catch(Exception e){
             e.printStackTrace();
         }
-        return encrypted;
+        
+        crypt.data = encrypted;
+        crypt.time = eTime -sTime;
+        return crypt;
     }
 
     @Override
-    public byte[] decrypt(byte[] message) {
+    public CrypticObject decrypt(byte[] message) {
         byte[] decrypted = "".getBytes();
         try{
             cipher = Cipher.getInstance("Blowfish");
             cipher.init(Cipher.DECRYPT_MODE, skeySpec);
-        decrypted = cipher.doFinal(message);
+            sTime = System.currentTimeMillis();
+            decrypted = cipher.doFinal(message);
+            eTime = System.currentTimeMillis();
         }catch(Exception e){
             e.printStackTrace();
         }
-        return decrypted;
+        
+        crypt.data = decrypted;
+        crypt.time = eTime - sTime;
+        return crypt;
     }
 
      public static XYSeries getDataSet() {

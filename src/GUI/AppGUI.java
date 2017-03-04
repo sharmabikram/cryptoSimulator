@@ -6,6 +6,7 @@
 package GUI;
 
 import Algorithms.CrypticAlgo;
+import Algorithms.CrypticObject;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -53,6 +54,7 @@ public class AppGUI extends javax.swing.JFrame {
    byte decrypted[];
    byte plainBytes[];
    long sTime, eTime;
+   CrypticObject crypt;
    
    int dataSet[][] = new int[2][10];
     XYSeriesCollection collect;
@@ -106,7 +108,7 @@ public class AppGUI extends javax.swing.JFrame {
         eTimeField = new javax.swing.JTextField();
         eUnitLabel = new javax.swing.JLabel();
         dTimeLabel = new javax.swing.JLabel();
-        dTimeText = new javax.swing.JTextField();
+        dTimeField = new javax.swing.JTextField();
         dUnitLabel = new javax.swing.JLabel();
         mainMenu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -183,7 +185,7 @@ public class AppGUI extends javax.swing.JFrame {
 
         plainLabel.setText("Plain Text");
 
-        algoCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RSA", "ElGamal", "EllipticCurve" }));
+        algoCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RSA", "ElGamal", "Elliptic-Curve" }));
         algoCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 algoComboActionPerformed(evt);
@@ -262,10 +264,10 @@ public class AppGUI extends javax.swing.JFrame {
 
         dTimeLabel.setText("Decrypition Time");
 
-        dTimeText.setEditable(false);
-        dTimeText.addActionListener(new java.awt.event.ActionListener() {
+        dTimeField.setEditable(false);
+        dTimeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dTimeTextActionPerformed(evt);
+                dTimeFieldActionPerformed(evt);
             }
         });
 
@@ -319,7 +321,7 @@ public class AppGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(dTimeLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -366,7 +368,7 @@ public class AppGUI extends javax.swing.JFrame {
                             .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dTimeLabel)
-                            .addComponent(dTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
@@ -488,9 +490,9 @@ public class AppGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RSACheckActionPerformed
 
-    private void dTimeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dTimeTextActionPerformed
+    private void dTimeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dTimeFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dTimeTextActionPerformed
+    }//GEN-LAST:event_dTimeFieldActionPerformed
 
     private void eTimeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eTimeFieldActionPerformed
         // TODO add your handling code here:
@@ -549,16 +551,14 @@ public class AppGUI extends javax.swing.JFrame {
         }*/
         
         
-        sTime = System.currentTimeMillis();
-        encrypted = algo.encrypt(plainText.getBytes());
-        eTime = System.currentTimeMillis();
-        cipherArea.setText((""+javax.xml.bind.DatatypeConverter.printHexBinary(encrypted)).toLowerCase());
-        eTimeField.setText(""+(eTime-sTime));
-        sTime = System.currentTimeMillis();
-        decrypted = algo.decrypt(encrypted);
-        eTime = System.currentTimeMillis();
-        decryptedArea.setText(""+new String(decrypted));
-        dTimeText.setText(""+(eTime-sTime));
+        
+        crypt = algo.encrypt(plainText.getBytes());
+        cipherArea.setText((""+javax.xml.bind.DatatypeConverter.printHexBinary(crypt.data)).toLowerCase());
+        eTimeField.setText(""+crypt.time);
+        
+        crypt = algo.decrypt(crypt.data);
+        decryptedArea.setText(""+new String(crypt.data));
+        dTimeField.setText(""+crypt.time);
 
     }//GEN-LAST:event_applyButtonActionPerformed
 
@@ -600,7 +600,7 @@ public class AppGUI extends javax.swing.JFrame {
         decryptedArea.setVisible(true);
         dTimeLabel.setVisible(true);
         dUnitLabel.setVisible(true);
-        dTimeText.setVisible(true);
+        dTimeField.setVisible(true);
         algoCombo.setEnabled(true);
         switch(item)
         {
@@ -618,7 +618,7 @@ public class AppGUI extends javax.swing.JFrame {
             decryptedArea.setVisible(false);
             dTimeLabel.setVisible(false);
             dUnitLabel.setVisible(false);
-            dTimeText.setVisible(false);
+            dTimeField.setVisible(false);
             break;
             default:
             algoCombo.setEnabled(false);
@@ -711,8 +711,8 @@ public class AppGUI extends javax.swing.JFrame {
     private javax.swing.JButton browseButton;
     private javax.swing.JTextArea cipherArea;
     private javax.swing.JLabel cipherLabel;
+    private javax.swing.JTextField dTimeField;
     private javax.swing.JLabel dTimeLabel;
-    private javax.swing.JTextField dTimeText;
     private javax.swing.JLabel dUnitLabel;
     private javax.swing.JTextArea decryptedArea;
     private javax.swing.JLabel decryptedLabel;

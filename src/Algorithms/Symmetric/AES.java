@@ -1,5 +1,6 @@
 package Algorithms.Symmetric;
 
+import Algorithms.CrypticObject;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -15,9 +16,12 @@ public class AES implements Algorithms.CrypticAlgo{
     public static int[][] dataSet = new int[2][10];
     KeyGenerator kgen;
     SecretKey skey;
-    byte[] raw;
     SecretKeySpec skeySpec; 
     Cipher cipher;
+    
+    byte[] encrypted, decrypted;
+    long sTime, eTime;
+    CrypticObject crypt = new CrypticObject(); 
     
     private static XYSeries point;
     static {
@@ -38,29 +42,39 @@ public class AES implements Algorithms.CrypticAlgo{
     }
     
     @Override
-    public byte[] encrypt(byte[] message) {
+    public CrypticObject encrypt(byte[] message) {
         byte[] encrypted = "".getBytes();
         try{
             cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, skey);
-        encrypted = cipher.doFinal(message);
+            sTime = System.currentTimeMillis();
+            encrypted = cipher.doFinal(message);
+            eTime = System.currentTimeMillis();
         }catch(Exception e){
             e.printStackTrace();
         }
-        return encrypted;
+        
+        crypt.data = encrypted;
+        crypt.time = eTime - sTime;
+        return crypt;
     }
 
     @Override
-    public byte[] decrypt(byte[] message) {
+    public CrypticObject decrypt(byte[] message) {
         byte[] decrypted = "".getBytes();
         try{
             cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, skey);
-        decrypted = cipher.doFinal(message);
+            sTime = System.currentTimeMillis();
+            decrypted = cipher.doFinal(message);
+            eTime = System.currentTimeMillis();
         }catch(Exception e){
             e.printStackTrace();
         }
-        return decrypted;
+        
+        crypt.data = decrypted;
+        crypt.time = eTime - sTime;
+        return crypt;
     }
 
      public static XYSeries getDataSet() {
