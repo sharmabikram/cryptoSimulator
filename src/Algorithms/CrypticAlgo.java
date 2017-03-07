@@ -5,8 +5,8 @@ package Algorithms;
 
 public interface CrypticAlgo {
     
-    public byte[] encrypt(byte[] message);
-    public byte[] decrypt(byte[] message);
+    public CrypticObject encrypt(byte[] message);
+    public CrypticObject decrypt(byte[] message);
     //public int[][] getDataSet();
 
     

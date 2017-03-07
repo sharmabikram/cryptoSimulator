@@ -2,11 +2,15 @@
 package Algorithms.Hash;
 
 
+import Algorithms.CrypticObject;
 import java.security.MessageDigest;
 
 
 public class SHA1 implements Algorithms.CrypticAlgo{
     
+    byte[] encrypted, decrypted;
+    long sTime, eTime;
+    CrypticObject crypt = new CrypticObject(); 
     MessageDigest sha1;
     
     public SHA1(){
@@ -19,13 +23,19 @@ public class SHA1 implements Algorithms.CrypticAlgo{
         }
     }
     @Override
-    public byte[] encrypt(byte[] message) {
-        return sha1.digest(message);
+    public CrypticObject encrypt(byte[] message) {
+        sTime = System.currentTimeMillis();
+        encrypted = sha1.digest(message);
+        eTime = System.currentTimeMillis();
+        
+        crypt.data = encrypted;
+        crypt.time = eTime - sTime;
+        return crypt;
     }
 
     @Override
-    public byte[] decrypt(byte[] message) {
-        return message;
+    public CrypticObject decrypt(byte[] message) {
+        return crypt;
     }
 
     
