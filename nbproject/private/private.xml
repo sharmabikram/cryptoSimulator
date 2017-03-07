@@ -2,16 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/CrypticSimulator/src/GUI/AppGUI.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/CrypticSimulator/src/Algorithms/Hash/MD5.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/CrypticSimulator/src/Algorithms/CrypticAlgo.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/CrypticSimulator/src/Algorithms/Asymmetric/RSA.java</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/CrypticSimulator/src/spring.xml</file>
-            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/CrypticSimulator/src/Algorithms/Asymmetric/EllipticCurve.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/CrypticSimulator/src/Algorithms/CrypticObject.java</file>
         </group>
-=======
-        <group/>
->>>>>>> e222acdf3d4a979c4c8bc4700ff508b665128c6e
     </open-files>
 </project-private>
