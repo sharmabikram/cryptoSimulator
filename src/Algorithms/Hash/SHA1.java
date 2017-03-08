@@ -4,6 +4,7 @@ package Algorithms.Hash;
 
 import Algorithms.CrypticObject;
 import java.security.MessageDigest;
+import org.jfree.data.xy.XYSeries;
 
 
 public class SHA1 implements Algorithms.CrypticAlgo{
@@ -39,7 +40,7 @@ public class SHA1 implements Algorithms.CrypticAlgo{
     }
 
     
-    public int[][] getDataSet() {
+    public XYSeries getDataSet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

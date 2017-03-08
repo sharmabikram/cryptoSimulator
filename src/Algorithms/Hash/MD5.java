@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
+import org.jfree.data.xy.XYSeries;
 
 public class MD5 implements Algorithms.CrypticAlgo{
 
@@ -50,7 +51,7 @@ public class MD5 implements Algorithms.CrypticAlgo{
     }
 
     
-    public int[][] getDataSet() {
+    public XYSeries getDataSet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

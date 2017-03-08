@@ -87,7 +87,7 @@ public class RSA implements Algorithms.CrypticAlgo{
     }
 
     
-    public static XYSeries getDataSet() {
+    public XYSeries getDataSet() {
     
             return point;  
     }

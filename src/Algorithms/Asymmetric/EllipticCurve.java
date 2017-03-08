@@ -35,7 +35,7 @@ public class EllipticCurve implements Algorithms.CrypticAlgo{
     Cipher cipher;
     private static XYSeries point;
     static {
-        point = new XYSeries("RSA");
+        point = new XYSeries("Elliptic Curve");
         for(int i = 0; i<10; ++i){
             point.add(i, i);
         }
@@ -92,7 +92,7 @@ public class EllipticCurve implements Algorithms.CrypticAlgo{
     }
 
     
-    public static XYSeries getDataSet() {
+    public XYSeries getDataSet() {
     
             return point;  
     }

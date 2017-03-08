@@ -78,7 +78,7 @@ public class BlowFish implements Algorithms.CrypticAlgo{
         return crypt;
     }
 
-     public static XYSeries getDataSet() {
+     public XYSeries getDataSet() {
     
             return point;  
     }

@@ -35,7 +35,7 @@ public class ElGamal implements Algorithms.CrypticAlgo{
     Cipher cipher;
     private static XYSeries point;
     static {
-        point = new XYSeries("RSA");
+        point = new XYSeries("ElGamal");
         for(int i = 0; i<10; ++i){
             point.add(i, i);
         }
@@ -93,7 +93,7 @@ public class ElGamal implements Algorithms.CrypticAlgo{
     }
 
     
-    public static XYSeries getDataSet() {
+    public XYSeries getDataSet() {
     
             return point;  
     }
