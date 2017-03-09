@@ -4,53 +4,53 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="mainMenu">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="moduleMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Module"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="simItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Simulation"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="analItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Analysis"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="analItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="exitItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="docItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Documentation"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="helpItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Help"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="helpItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -135,13 +135,13 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jScrollPane6" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
                                               <Component id="plotGraphButton" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
-                                              <Component id="jLabel3" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
+                                              <Component id="hashLabel" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel1" min="-2" pref="70" max="-2" attributes="0"/>
+                                              <Component id="asymLabel" min="-2" pref="70" max="-2" attributes="0"/>
                                               <Component id="jScrollPane4" min="-2" pref="95" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -151,13 +151,13 @@
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel2" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="symLabel" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="encryptLabel1" min="-2" pref="455" max="-2" attributes="0"/>
+                      <Component id="encryptLabel" min="-2" pref="455" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Component id="decryptLabel1" min="-2" pref="442" max="-2" attributes="0"/>
+                      <Component id="decryptLabel" min="-2" pref="442" max="-2" attributes="0"/>
                       <EmptySpace pref="229" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -166,23 +166,23 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="78" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="asymLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane4" min="-2" pref="82" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="symLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" pref="82" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hashLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane6" min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="encryptLabel1" alignment="3" min="-2" pref="368" max="-2" attributes="0"/>
-                              <Component id="decryptLabel1" alignment="3" min="-2" pref="368" max="-2" attributes="0"/>
+                              <Component id="encryptLabel" alignment="3" min="-2" pref="368" max="-2" attributes="0"/>
+                              <Component id="decryptLabel" alignment="3" min="-2" pref="368" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -221,9 +221,9 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="encryptLabel1">
+            <Component class="javax.swing.JLabel" name="encryptLabel">
             </Component>
-            <Component class="javax.swing.JLabel" name="decryptLabel1">
+            <Component class="javax.swing.JLabel" name="decryptLabel">
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane5">
 
@@ -265,17 +265,17 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="asymLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Asymmetric"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="symLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Symmetric"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="hashLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Hash"/>
               </Properties>
@@ -304,7 +304,7 @@
                                           <Group type="102" attributes="0">
                                               <Component id="browseButton" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="encLargeButton" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jScrollPane1" min="-2" pref="220" max="-2" attributes="0"/>
                                       </Group>
@@ -332,7 +332,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="sizeLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="sizeText" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="sizeField" min="-2" pref="81" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="eTimeLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -400,7 +400,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="sizeText" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="sizeField" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                           <Component id="eTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="eTimeField" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="eUnitLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -411,7 +411,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="encLargeButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="93" max="32767" attributes="0"/>
                   </Group>
@@ -550,15 +550,15 @@
             </Container>
             <Component class="javax.swing.JLabel" name="sizeLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value=" Size of Input Text (KB)"/>
+                <Property name="text" type="java.lang.String" value=" Size of Input (KB)"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="sizeText">
+            <Component class="javax.swing.JTextField" name="sizeField">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sizeTextActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sizeFieldActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="eTimeLabel">
@@ -598,12 +598,12 @@
                 <Property name="text" type="java.lang.String" value="ms"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="encLargeButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Encrypt Large Files"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="encLargeButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

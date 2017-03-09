@@ -52,6 +52,8 @@ public class RSA implements Algorithms.CrypticAlgo{
     
     @Override
     public CrypticObject encrypt(byte[] message) {
+        
+        
         byte[] encrypted = "".getBytes();
         try{
             cipher = Cipher.getInstance("RSA");
@@ -70,7 +72,7 @@ public class RSA implements Algorithms.CrypticAlgo{
 
     @Override
     public CrypticObject decrypt(byte[] message) {
-        byte[] decrypted = "".getBytes();
+        
         try{
             cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.DECRYPT_MODE, privKey);

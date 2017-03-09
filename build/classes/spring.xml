@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "//SPRING//DTD BEAN 2.0//EN" "HTTP://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans>
-<bean id = "ElGamal" class = "Algorithms.Asymmetric.ElGamal"></bean>
-<bean id = "RSA" class = "Algorithms.Asymmetric.RSA"></bean>
+<bean id = "ElGamal" class = "Algorithms.Asymmetric.blockElGamal"></bean>
+<bean id = "RSA" class = "Algorithms.Asymmetric.blockRSA"></bean>
+<bean id = "basicElGamal" class = "Algorithms.Asymmetric.ElGamal"></bean>
+<bean id = "basicRSA" class = "Algorithms.Asymmetric.RSA"></bean>
 <bean id = "Elliptic-Curve" class = "Algorithms.Asymmetric.EllipticCurve"></bean>
 <bean id = "BlowFish" class = "Algorithms.Symmetric.BlowFish"></bean>
 <bean id = "DES" class = "Algorithms.Symmetric.DES"></bean>

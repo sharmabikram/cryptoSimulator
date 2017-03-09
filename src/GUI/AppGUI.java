@@ -59,6 +59,7 @@ public class AppGUI extends javax.swing.JFrame {
    byte decrypted[];
    byte plainBytes[];
    FileInputStream iStream;
+   boolean simMod = true;
    
    long sTime, eTime;
    CrypticObject crypt;
@@ -92,15 +93,15 @@ public class AppGUI extends javax.swing.JFrame {
         plotGraphButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         asymmetricList = new javax.swing.JList();
-        encryptLabel1 = new javax.swing.JLabel();
-        decryptLabel1 = new javax.swing.JLabel();
+        encryptLabel = new javax.swing.JLabel();
+        decryptLabel = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         symmetricList = new javax.swing.JList();
         jScrollPane6 = new javax.swing.JScrollPane();
         hashList = new javax.swing.JList();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        asymLabel = new javax.swing.JLabel();
+        symLabel = new javax.swing.JLabel();
+        hashLabel = new javax.swing.JLabel();
         simPanel = new javax.swing.JPanel();
         plainLabel = new javax.swing.JLabel();
         algoCombo = new javax.swing.JComboBox();
@@ -118,22 +119,22 @@ public class AppGUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         decryptedArea = new javax.swing.JTextArea();
         sizeLabel = new javax.swing.JLabel();
-        sizeText = new javax.swing.JTextField();
+        sizeField = new javax.swing.JTextField();
         eTimeLabel = new javax.swing.JLabel();
         eTimeField = new javax.swing.JTextField();
         eUnitLabel = new javax.swing.JLabel();
         dTimeLabel = new javax.swing.JLabel();
         dTimeField = new javax.swing.JTextField();
         dUnitLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        encLargeButton = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        moduleMenu = new javax.swing.JMenu();
+        simItem = new javax.swing.JMenuItem();
+        analItem = new javax.swing.JMenuItem();
+        exitItem = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        docItem = new javax.swing.JMenuItem();
+        helpItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoSimulator");
@@ -184,11 +185,11 @@ public class AppGUI extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(hashList);
 
-        jLabel1.setText("Asymmetric");
+        asymLabel.setText("Asymmetric");
 
-        jLabel2.setText("Symmetric");
+        symLabel.setText("Symmetric");
 
-        jLabel3.setText("Hash");
+        hashLabel.setText("Hash");
 
         javax.swing.GroupLayout analPanelLayout = new javax.swing.GroupLayout(analPanel);
         analPanel.setLayout(analPanelLayout);
@@ -204,42 +205,42 @@ public class AppGUI extends javax.swing.JFrame {
                                     .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(plotGraphButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(hashLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(analPanelLayout.createSequentialGroup()
                                     .addGap(20, 20, 20)
                                     .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(asymLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, analPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(symLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)))
-                .addComponent(encryptLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(encryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
-                .addComponent(decryptLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(decryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(229, Short.MAX_VALUE))
         );
         analPanelLayout.setVerticalGroup(
             analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(analPanelLayout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(asymLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(analPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addComponent(symLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel3)
+                        .addComponent(hashLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(encryptLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(decryptLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(encryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(decryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(plotGraphButton)
                 .addGap(72, 72, 72))
@@ -303,12 +304,12 @@ public class AppGUI extends javax.swing.JFrame {
         decryptedArea.setRows(5);
         jScrollPane3.setViewportView(decryptedArea);
 
-        sizeLabel.setText(" Size of Input Text (KB)");
+        sizeLabel.setText(" Size of Input (KB)");
 
-        sizeText.setEditable(false);
-        sizeText.addActionListener(new java.awt.event.ActionListener() {
+        sizeField.setEditable(false);
+        sizeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sizeTextActionPerformed(evt);
+                sizeFieldActionPerformed(evt);
             }
         });
 
@@ -335,10 +336,10 @@ public class AppGUI extends javax.swing.JFrame {
 
         dUnitLabel.setText("ms");
 
-        jButton1.setText("Encrypt Large Files");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        encLargeButton.setText("Encrypt Large Files");
+        encLargeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                encLargeButtonActionPerformed(evt);
             }
         });
 
@@ -362,7 +363,7 @@ public class AppGUI extends javax.swing.JFrame {
                                     .addGroup(simPanelLayout.createSequentialGroup()
                                         .addComponent(browseButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1))
+                                        .addComponent(encLargeButton))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(58, 58, 58)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,7 +385,7 @@ public class AppGUI extends javax.swing.JFrame {
                             .addGroup(simPanelLayout.createSequentialGroup()
                                 .addComponent(sizeLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sizeField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(eTimeLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -438,16 +439,19 @@ public class AppGUI extends javax.swing.JFrame {
                             .addGroup(simPanelLayout.createSequentialGroup()
                                 .addGap(43, 43, 43)
                                 .addGroup(simPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(sizeText, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sizeField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(eTimeLabel)
                                     .addComponent(eTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(eUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dTimeLabel)
                                     .addComponent(dTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jButton1))
+                    .addComponent(encLargeButton))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
+
+        modulePane.setLayer(analPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        modulePane.setLayer(simPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout modulePaneLayout = new javax.swing.GroupLayout(modulePane);
         modulePane.setLayout(modulePaneLayout);
@@ -464,51 +468,49 @@ public class AppGUI extends javax.swing.JFrame {
             .addComponent(simPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(analPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        modulePane.setLayer(analPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        modulePane.setLayer(simPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jMenu1.setText("Module");
+        moduleMenu.setText("Module");
 
-        jMenuItem1.setText("Simulation");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        simItem.setText("Simulation");
+        simItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                simItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        moduleMenu.add(simItem);
 
-        jMenuItem2.setText("Analysis");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        analItem.setText("Analysis");
+        analItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                analItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        moduleMenu.add(analItem);
 
-        jMenuItem5.setText("Exit");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        exitItem.setText("Exit");
+        exitItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                exitItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        moduleMenu.add(exitItem);
 
-        mainMenu.add(jMenu1);
+        mainMenu.add(moduleMenu);
 
-        jMenu2.setText("Help");
+        helpMenu.setText("Help");
 
-        jMenuItem3.setText("Documentation");
-        jMenu2.add(jMenuItem3);
+        docItem.setText("Documentation");
+        helpMenu.add(docItem);
 
-        jMenuItem4.setText("Help");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        helpItem.setText("Help");
+        helpItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                helpItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        helpMenu.add(helpItem);
 
-        mainMenu.add(jMenu2);
+        mainMenu.add(helpMenu);
 
         setJMenuBar(mainMenu);
 
@@ -526,21 +528,45 @@ public class AppGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void resetComponents()
+    {
+        //Reset simPanel
+        plainArea.setText("");
+        cipherArea.setText("");
+        decryptedArea.setText("");
+        sizeField.setText("");
+        eTimeField.setText("");
+        dTimeField.setText("");
+        techniqueCombo.setSelectedIndex(0);
+        algoCombo.setModel(new DefaultComboBoxModel(asym));
+        
+        //Reset analPanel
+        symmetricList.clearSelection();
+        asymmetricList.clearSelection();
+        hashList.clearSelection();
+        encryptLabel.setIcon(null);
+        decryptLabel.setIcon(null);
+        
+    }
+    private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_helpItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void simItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simItemActionPerformed
         // TODO add your handling code here:
+        resetComponents();
         simPanel.setVisible(true);
         analPanel.setVisible(false);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_simItemActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void analItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analItemActionPerformed
         // TODO add your handling code here:
+       
+        resetComponents();
         simPanel.setVisible(false);
         analPanel.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        
+    }//GEN-LAST:event_analItemActionPerformed
 
     private void plotGraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotGraphButtonActionPerformed
         int i, j;
@@ -582,9 +608,9 @@ public class AppGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_eTimeFieldActionPerformed
 
-    private void sizeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeTextActionPerformed
+    private void sizeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sizeTextActionPerformed
+    }//GEN-LAST:event_sizeFieldActionPerformed
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
         
@@ -593,7 +619,7 @@ public class AppGUI extends javax.swing.JFrame {
         int length = plainText.length();
         context = new ClassPathXmlApplicationContext("spring.xml");
         algo_used = algoCombo.getSelectedItem().toString();
-        sizeText.setText(""+((float)plainText.length()/1024));
+        sizeField.setText(""+((float)plainText.length())/1024);
         algo = (CrypticAlgo)context.getBean(algo_used);
         
         /*if(algo == (CrypticAlgo)context.getBean("RSA"))
@@ -673,6 +699,10 @@ public class AppGUI extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     Logger.getLogger(AppGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                if(plainBytes.length > 1024)
+                {
+                    JOptionPane.showMessageDialog(modulePane, "The file seems to be larger than 1 MB.", "",INFORMATION_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_browseButtonActionPerformed
@@ -718,14 +748,14 @@ public class AppGUI extends javax.swing.JFrame {
         //algo_used = jComboBox2.getSelectedItem().toString();
     }//GEN-LAST:event_algoComboActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_exitItemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void encLargeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encLargeButtonActionPerformed
         // TODO add your handling code here:
         
-        sizeText.setText(""+(float)plainBytes.length/(1024*1024));
+        sizeField.setText(""+(float)plainBytes.length/(1024*1024));
         algo_used = algoCombo.getSelectedItem().toString();
         context = new ClassPathXmlApplicationContext("spring.xml");
         algo = (CrypticAlgo)context.getBean(algo_used);
@@ -734,13 +764,12 @@ public class AppGUI extends javax.swing.JFrame {
         eTimeField.setText(""+(float)crypt.time/1000);
         
         plainBytes = null;
-        System.gc();
         
         crypt = algo.decrypt(crypt.data);
         dTimeField.setText(""+(float)crypt.time/1000);
         
         JOptionPane.showMessageDialog(modulePane, "Encryption Successful", "",INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_encLargeButtonActionPerformed
 
     private void asymmetricListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_asymmetricListValueChanged
         // TODO add your handling code here:
@@ -770,7 +799,7 @@ public class AppGUI extends javax.swing.JFrame {
         
        try {
            ChartUtilities.saveChartAsJPEG(new File("chartEncrypt.jpg"), chart, 500, 300);
-           showImage(encryptLabel1, "chartEncrypt.jpg");
+           showImage(encryptLabel, "chartEncrypt.jpg");
        } catch (IOException ex) {
            ex.printStackTrace();
        }
@@ -794,7 +823,7 @@ public class AppGUI extends javax.swing.JFrame {
         
        try {
            ChartUtilities.saveChartAsJPEG(new File("chartDecrypt.jpg"), chart, 500, 300);
-           showImage(decryptLabel1, "chartDecrypt.jpg");
+           showImage(decryptLabel, "chartDecrypt.jpg");
        } catch (IOException ex) {
            ex.printStackTrace();
        }
@@ -847,8 +876,10 @@ public class AppGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox algoCombo;
     private javax.swing.JLabel algoLabel;
+    private javax.swing.JMenuItem analItem;
     private javax.swing.JPanel analPanel;
     private javax.swing.JButton applyButton;
+    private javax.swing.JLabel asymLabel;
     private javax.swing.JList asymmetricList;
     private javax.swing.JButton browseButton;
     private javax.swing.JTextArea cipherArea;
@@ -856,25 +887,20 @@ public class AppGUI extends javax.swing.JFrame {
     private javax.swing.JTextField dTimeField;
     private javax.swing.JLabel dTimeLabel;
     private javax.swing.JLabel dUnitLabel;
-    private javax.swing.JLabel decryptLabel1;
+    private javax.swing.JLabel decryptLabel;
     private javax.swing.JTextArea decryptedArea;
     private javax.swing.JLabel decryptedLabel;
+    private javax.swing.JMenuItem docItem;
     private javax.swing.JTextField eTimeField;
     private javax.swing.JLabel eTimeLabel;
     private javax.swing.JLabel eUnitLabel;
-    private javax.swing.JLabel encryptLabel1;
+    private javax.swing.JButton encLargeButton;
+    private javax.swing.JLabel encryptLabel;
+    private javax.swing.JMenuItem exitItem;
+    private javax.swing.JLabel hashLabel;
     private javax.swing.JList hashList;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem helpItem;
+    private javax.swing.JMenu helpMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -882,13 +908,16 @@ public class AppGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JMenuBar mainMenu;
+    private javax.swing.JMenu moduleMenu;
     private javax.swing.JLayeredPane modulePane;
     private javax.swing.JTextArea plainArea;
     private javax.swing.JLabel plainLabel;
     private javax.swing.JButton plotGraphButton;
+    private javax.swing.JMenuItem simItem;
     private javax.swing.JPanel simPanel;
+    private javax.swing.JTextField sizeField;
     private javax.swing.JLabel sizeLabel;
-    private javax.swing.JTextField sizeText;
+    private javax.swing.JLabel symLabel;
     private javax.swing.JList symmetricList;
     private javax.swing.JComboBox techniqueCombo;
     private javax.swing.JLabel techniqueLabel;
