@@ -33,12 +33,32 @@ public class EllipticCurve implements Algorithms.CrypticAlgo{
     long sTime, eTime;
     CrypticObject crypt = new CrypticObject(); 
     Cipher cipher;
-    private static XYSeries point;
+    private static XYSeries pointEncrypt, pointDecrypt;
     static {
-        point = new XYSeries("Elliptic Curve");
-        for(int i = 0; i<10; ++i){
-            point.add(i, i);
-        }
+        pointEncrypt = new XYSeries("Elliptic Curve");
+        pointDecrypt = new XYSeries("Elliptic Curve");
+        // hardcoded data set
+        pointEncrypt.add(1, 0.066);
+        pointEncrypt.add(2, 0.126);
+        pointEncrypt.add(3, 0.181);
+        pointEncrypt.add(4, 0.239);
+        pointEncrypt.add(5, 0.31);
+        pointEncrypt.add(6, 0.372);
+        pointEncrypt.add(7, 0.432);
+        pointEncrypt.add(8, 0.492);
+        pointEncrypt.add(9, 0.531);
+        pointEncrypt.add(10, 0.615);
+        
+        pointDecrypt.add(1, 0.063);
+        pointDecrypt.add(2, 0.123);
+        pointDecrypt.add(3, 0.179);
+        pointDecrypt.add(4, 0.235);
+        pointDecrypt.add(5, 0.298);
+        pointDecrypt.add(6, 0.354);
+        pointDecrypt.add(7, 0.412);
+        pointDecrypt.add(8, 0.471);
+        pointDecrypt.add(9, 0.523);
+        pointDecrypt.add(10, 0.601);
     }
     public EllipticCurve(){
         
@@ -92,9 +112,14 @@ public class EllipticCurve implements Algorithms.CrypticAlgo{
     }
 
     
-    public XYSeries getDataSet() {
+    public XYSeries getEncryptionDataSet() {
     
-            return point;  
+            return pointEncrypt;  
+    }
+    
+    public XYSeries getDecryptionDataSet() {
+    
+            return pointDecrypt;  
     }
     
 }

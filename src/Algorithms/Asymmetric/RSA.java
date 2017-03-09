@@ -31,10 +31,13 @@ public class RSA implements Algorithms.CrypticAlgo{
     CrypticObject crypt = new CrypticObject(); 
     Cipher cipher;
     private static XYSeries point;
+    private static XYSeries pointEncrypt, pointDecrypt;
     static {
-        point = new XYSeries("RSA");
+        pointEncrypt = new XYSeries("RSA");
+        pointDecrypt = new XYSeries("RSA");
         for(int i = 0; i<10; ++i){
-            point.add(i, i);
+            pointEncrypt.add(i, i);
+            pointDecrypt.add(i, i);
         }
     }
     public RSA(){
@@ -89,9 +92,14 @@ public class RSA implements Algorithms.CrypticAlgo{
     }
 
     
-    public XYSeries getDataSet() {
+    public XYSeries getEncryptionDataSet() {
     
-            return point;  
+            return pointEncrypt;  
+    }
+    
+    public XYSeries getDecryptionDataSet() {
+    
+            return pointDecrypt;  
     }
     
 }

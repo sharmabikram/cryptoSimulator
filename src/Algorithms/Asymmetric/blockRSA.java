@@ -80,8 +80,15 @@ public class blockRSA implements Algorithms.CrypticAlgo{
     }
 
     @Override
-    public XYSeries getDataSet() {
-        return algo.getDataSet();
+    public XYSeries getEncryptionDataSet() {
+        context = new ClassPathXmlApplicationContext("spring.xml");
+        algo = (CrypticAlgo)context.getBean("basicRSA");
+        return algo.getEncryptionDataSet();
+    }
+
+    @Override
+    public XYSeries getDecryptionDataSet() {
+        return algo.getDecryptionDataSet();
     }
     
 }

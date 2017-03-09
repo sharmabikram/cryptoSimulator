@@ -23,12 +23,32 @@ public class BlowFish implements Algorithms.CrypticAlgo{
     byte[] encrypted, decrypted;
     long sTime, eTime;
     CrypticObject crypt = new CrypticObject(); 
-    private static XYSeries point;
+    private static XYSeries pointEncrypt, pointDecrypt;
     static {
-        point = new XYSeries("BolwFish");
-        for(int i = 0; i<10; ++i){
-            point.add(i, i+7);
-        }
+        pointEncrypt = new XYSeries("Blow Fish");
+        pointDecrypt = new XYSeries("Blow Fish");
+        // hardcoded data set
+        pointEncrypt.add(1, 0.018);
+        pointEncrypt.add(2, 0.037);
+        pointEncrypt.add(3, 0.056);
+        pointEncrypt.add(4, 0.074);
+        pointEncrypt.add(5, 0.092);
+        pointEncrypt.add(6, 0.11);
+        pointEncrypt.add(7, 0.128);
+        pointEncrypt.add(8, 0.153);
+        pointEncrypt.add(9, 0.171);
+        pointEncrypt.add(10, 0.185);
+        
+        pointDecrypt.add(1, 0.021);
+        pointDecrypt.add(2, 0.039);
+        pointDecrypt.add(3, 0.058);
+        pointDecrypt.add(4, 0.076);
+        pointDecrypt.add(5, 0.096);
+        pointDecrypt.add(6, 0.116);
+        pointDecrypt.add(7, 0.145);
+        pointDecrypt.add(8, 0.167);
+        pointDecrypt.add(9, 0.171);
+        pointDecrypt.add(10, 0.191);
     }
     
     public BlowFish(){
@@ -78,9 +98,14 @@ public class BlowFish implements Algorithms.CrypticAlgo{
         return crypt;
     }
 
-     public XYSeries getDataSet() {
+    public XYSeries getEncryptionDataSet() {
     
-            return point;  
+            return pointEncrypt;  
+    }
+    
+    public XYSeries getDecryptionDataSet() {
+    
+            return pointDecrypt;  
     }
     
 }

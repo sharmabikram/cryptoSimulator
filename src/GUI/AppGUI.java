@@ -25,6 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 import javax.xml.bind.DatatypeConverter;
@@ -52,7 +53,7 @@ public class AppGUI extends javax.swing.JFrame {
    String plainText;
    String technique;
    String algo_used;
-   String asym[] = new String[] { "RSA", "ElGamal", "EllipticCurve"};
+   String asym[] = new String[] { "RSA", "ElGamal", "Elliptic-Curve"};
    String sym[] = new String[] { "BlowFish", "DES", "AES" };
    String hash[] = new String[] {"MD5", "SHA-1"};
    byte encrypted[];
@@ -60,7 +61,7 @@ public class AppGUI extends javax.swing.JFrame {
    byte plainBytes[];
    FileInputStream iStream;
    boolean simMod = true;
-   
+   File file;
    long sTime, eTime;
    CrypticObject crypt;
    
@@ -75,8 +76,10 @@ public class AppGUI extends javax.swing.JFrame {
    BufferedImage graph;
     public AppGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         //context = new ClassPathXmlApplicationContext("spring.xml");
         analPanel.setVisible(false);
+        
     }
 
     /**
@@ -117,18 +120,17 @@ public class AppGUI extends javax.swing.JFrame {
         techniqueLabel = new javax.swing.JLabel();
         algoLabel = new javax.swing.JLabel();
         analPanel = new javax.swing.JPanel();
+        encryptLabel = new javax.swing.JLabel();
+        decryptLabel = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        symLabel = new javax.swing.JLabel();
         plotGraphButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         asymmetricList = new javax.swing.JList();
-        encryptLabel = new javax.swing.JLabel();
-        decryptLabel = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         symmetricList = new javax.swing.JList();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        hashList = new javax.swing.JList();
         asymLabel = new javax.swing.JLabel();
-        symLabel = new javax.swing.JLabel();
-        hashLabel = new javax.swing.JLabel();
+        clearButton = new javax.swing.JButton();
         mainMenu = new javax.swing.JMenuBar();
         moduleMenu = new javax.swing.JMenu();
         simItem = new javax.swing.JMenuItem();
@@ -141,6 +143,7 @@ public class AppGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoSimulator");
         setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
+        setLocation(new java.awt.Point(100, 100));
         setPreferredSize(new java.awt.Dimension(750, 550));
         setResizable(false);
 
@@ -257,7 +260,7 @@ public class AppGUI extends javax.swing.JFrame {
                                 .addComponent(techniqueLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(techniqueCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
+                                .addGap(18, 18, 18)
                                 .addComponent(algoLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(algoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -361,6 +364,16 @@ public class AppGUI extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
+        analPanel.setPreferredSize(new java.awt.Dimension(1200, 400));
+
+        encryptLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        encryptLabel.setPreferredSize(new java.awt.Dimension(500, 300));
+
+        decryptLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        decryptLabel.setPreferredSize(new java.awt.Dimension(500, 300));
+
+        symLabel.setText("Symmetric");
+
         plotGraphButton.setText("Plot Graph");
         plotGraphButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,77 +405,70 @@ public class AppGUI extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(symmetricList);
 
-        hashList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "MD5", "SHA-1", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        hashList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                hashListValueChanged(evt);
-            }
-        });
-        jScrollPane6.setViewportView(hashList);
-
         asymLabel.setText("Asymmetric");
 
-        symLabel.setText("Symmetric");
+        clearButton.setText("Clear Selection");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
-        hashLabel.setText("Hash");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(symLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(asymLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotGraphButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(asymLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(symLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(plotGraphButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout analPanelLayout = new javax.swing.GroupLayout(analPanel);
         analPanel.setLayout(analPanelLayout);
         analPanelLayout.setHorizontalGroup(
             analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(analPanelLayout.createSequentialGroup()
-                .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(analPanelLayout.createSequentialGroup()
-                        .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, analPanelLayout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(plotGraphButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(hashLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(analPanelLayout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(asymLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, analPanelLayout.createSequentialGroup()
-                        .addComponent(symLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)))
-                .addComponent(encryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(decryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(encryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(decryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         analPanelLayout.setVerticalGroup(
             analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(analPanelLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(asymLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(analPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(symLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(hashLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(encryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(decryptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(plotGraphButton)
-                .addGap(72, 72, 72))
+                .addGap(38, 38, 38)
+                .addGroup(analPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(encryptLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decryptLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         modulePane.setLayer(simPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -480,9 +486,10 @@ public class AppGUI extends javax.swing.JFrame {
         );
         modulePaneLayout.setVerticalGroup(
             modulePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(analPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(modulePaneLayout.createSequentialGroup()
-                .addComponent(simPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(modulePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(analPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(simPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -541,7 +548,7 @@ public class AppGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(modulePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 25, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
 
         pack();
@@ -549,6 +556,7 @@ public class AppGUI extends javax.swing.JFrame {
 
     private void resetComponents()
     {
+        setLocationRelativeTo(null);
         //Reset simPanel
         plainArea.setText("");
         cipherArea.setText("");
@@ -563,7 +571,7 @@ public class AppGUI extends javax.swing.JFrame {
         //Reset analPanel
         symmetricList.clearSelection();
         asymmetricList.clearSelection();
-        hashList.clearSelection();
+        //hashList.clearSelection();
         encryptLabel.setIcon(null);
         decryptLabel.setIcon(null);
         
@@ -574,18 +582,18 @@ public class AppGUI extends javax.swing.JFrame {
 
     private void simItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simItemActionPerformed
         // TODO add your handling code here:
-        JFrame j = new JFrame();
-        
+        setSize(new Dimension(750, 550));
         resetComponents();
-        setPreferredSize(new Dimension(748, 500));
+        
         simPanel.setVisible(true);
         analPanel.setVisible(false);
     }//GEN-LAST:event_simItemActionPerformed
 
     private void analItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analItemActionPerformed
         // TODO add your handling code here:
-       
+        setSize(new Dimension(1220, 450));
         resetComponents();
+        
         simPanel.setVisible(false);
         analPanel.setVisible(true);
         
@@ -596,28 +604,33 @@ public class AppGUI extends javax.swing.JFrame {
         int alen, slen, hlen;
          Object asymmetric[] = asymmetricList.getSelectedValues();
          Object symmetric[] = symmetricList.getSelectedValues();
-         Object hash[] = hashList.getSelectedValues();
+         //Object hash[] = hashList.getSelectedValues();
          alen = asymmetric.length;
          slen = symmetric.length;
-         hlen = hash.length;
-         String myList[] = new String[alen+slen+hlen];
+         //hlen = hash.length;
+         String myList[] = new String[alen+slen];
          
          j=0;
          for(i=0; i<alen; ++i)
              myList[j++] = (String)asymmetric[i];
          for(i=0; i<slen; ++i)
              myList[j++] = (String)symmetric[i];
-         for(i=0; i<hlen; ++i)
-             myList[j++] = (String)hash[i];
+         /*for(i=0; i<hlen; ++i)
+             myList[j++] = (String)hash[i];*/
          
+        if(myList.length == 0){
+            JOptionPane.showMessageDialog(modulePane, "Select any technique to plot the graph.", "Empty Selection",ERROR_MESSAGE);
+            return;
+        }
+        
         context = new ClassPathXmlApplicationContext("spring.xml");
         collectEncryption = new XYSeriesCollection();
         collectDecryption = new XYSeriesCollection();
         for(i=0; i<myList.length; ++i){
             System.out.println(myList[i]);
             algo = (CrypticAlgo)context.getBean(myList[i]);
-            collectEncryption.addSeries(algo.getDataSet());
-            collectDecryption.addSeries(algo.getDataSet());
+            collectEncryption.addSeries(algo.getEncryptionDataSet());
+            collectDecryption.addSeries(algo.getDecryptionDataSet());
         }
         plotGraphEncryption();
         plotGraphDecryption();
@@ -635,10 +648,6 @@ public class AppGUI extends javax.swing.JFrame {
     private void symmetricListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_symmetricListValueChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_symmetricListValueChanged
-
-    private void hashListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_hashListValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hashListValueChanged
 
     private void fileNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameFieldActionPerformed
         // TODO add your handling code here:
@@ -658,7 +667,11 @@ public class AppGUI extends javax.swing.JFrame {
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
 
+        if(file == null){
+            plainBytes = plainArea.getText().getBytes();
+        }
         int len = plainBytes.length;
+        sizeField.setText(""+((float)plainBytes.length)/1024);
         context = new ClassPathXmlApplicationContext("spring.xml");
         algo_used = algoCombo.getSelectedItem().toString();       
         algo = (CrypticAlgo)context.getBean(algo_used);
@@ -694,7 +707,7 @@ public class AppGUI extends javax.swing.JFrame {
 
             returnVal = openTextFile.showOpenDialog(simPanel);
             if(returnVal == JFileChooser.APPROVE_OPTION){
-                File file = openTextFile.getSelectedFile();
+                file = openTextFile.getSelectedFile();
                 fileNameField.setText(""+file.getPath());
                 try {
                     iStream = new FileInputStream(file);
@@ -754,13 +767,19 @@ public class AppGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         //algo_used = jComboBox2.getSelectedItem().toString();
     }//GEN-LAST:event_algoComboActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        // TODO add your handling code here:
+        symmetricList.clearSelection();
+        asymmetricList.clearSelection();
+    }//GEN-LAST:event_clearButtonActionPerformed
     public void plotGraphEncryption(){
        
         
         JFreeChart chart = ChartFactory.createXYLineChart(
-                "Analysis of Algorithm",
-                "user load",
-                "encryption time",
+                "Encryption",
+                "Size of Input",
+                "Encryption Time",
                 collectEncryption,
                 PlotOrientation.VERTICAL,
                 true,
@@ -782,9 +801,9 @@ public class AppGUI extends javax.swing.JFrame {
        
         
         JFreeChart chart = ChartFactory.createXYLineChart(
-                "Analysis of Algorithm",
-                "user load",
-                "decryption time",
+                "Decryption",
+                "Size of Input",
+                "Decryption Time",
                 collectDecryption,
                 PlotOrientation.VERTICAL,
                 true,
@@ -855,6 +874,7 @@ public class AppGUI extends javax.swing.JFrame {
     private javax.swing.JButton browseButton;
     private javax.swing.JTextArea cipherArea;
     private javax.swing.JLabel cipherLabel;
+    private javax.swing.JButton clearButton;
     private javax.swing.JTextField dTimeField;
     private javax.swing.JLabel dTimeLabel;
     private javax.swing.JLabel dUnitLabel;
@@ -869,17 +889,15 @@ public class AppGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JLabel fileLabel;
     private javax.swing.JTextField fileNameField;
-    private javax.swing.JLabel hashLabel;
-    private javax.swing.JList hashList;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenu moduleMenu;
     private javax.swing.JLayeredPane modulePane;

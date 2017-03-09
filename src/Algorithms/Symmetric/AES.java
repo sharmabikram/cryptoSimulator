@@ -23,12 +23,32 @@ public class AES implements Algorithms.CrypticAlgo{
     long sTime, eTime;
     CrypticObject crypt = new CrypticObject(); 
     
-    private static XYSeries point;
+    private static XYSeries pointEncrypt, pointDecrypt;
     static {
-        point = new XYSeries("AES");
-        for(int i = 0; i<10; ++i){
-            point.add(i+1, i+3);
-        }
+        pointEncrypt = new XYSeries("AES");
+        pointDecrypt = new XYSeries("AES");
+        // hardcoded data set
+        pointEncrypt.add(1, 0.012);
+        pointEncrypt.add(2, 0.022);
+        pointEncrypt.add(3, 0.037);
+        pointEncrypt.add(4, 0.045);
+        pointEncrypt.add(5, 0.055);
+        pointEncrypt.add(6, 0.077);
+        pointEncrypt.add(7, 0.087);
+        pointEncrypt.add(8, 0.093);
+        pointEncrypt.add(9, 0.1);
+        pointEncrypt.add(10, 0.111);
+        
+        pointDecrypt.add(1, 0.012);
+        pointDecrypt.add(2, 0.024);
+        pointDecrypt.add(3, 0.039);
+        pointDecrypt.add(4, 0.043);
+        pointDecrypt.add(5, 0.054);
+        pointDecrypt.add(6, 0.066);
+        pointDecrypt.add(7, 0.077);
+        pointDecrypt.add(8, 0.087);
+        pointDecrypt.add(9, 0.097);
+        pointDecrypt.add(10, 0.108);
     }
     
     public AES(){
@@ -77,9 +97,14 @@ public class AES implements Algorithms.CrypticAlgo{
         return crypt;
     }
 
-     public XYSeries getDataSet() {
+     public XYSeries getEncryptionDataSet() {
     
-            return point;  
+            return pointEncrypt;  
+    }
+    
+    public XYSeries getDecryptionDataSet() {
+    
+            return pointDecrypt;  
     }
     
 }

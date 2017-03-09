@@ -9,6 +9,6 @@ public interface CrypticAlgo {
     
     public CrypticObject encrypt(byte[] message);
     public CrypticObject decrypt(byte[] message);
-    public XYSeries getDataSet();
-   
+    public XYSeries getEncryptionDataSet();
+    public XYSeries getDecryptionDataSet();
 }

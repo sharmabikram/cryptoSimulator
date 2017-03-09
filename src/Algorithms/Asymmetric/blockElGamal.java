@@ -79,9 +79,18 @@ public class blockElGamal implements Algorithms.CrypticAlgo{
         return crypt;
     }
 
+    
+
     @Override
-    public XYSeries getDataSet() {
-        return algo.getDataSet();
+    public XYSeries getEncryptionDataSet() {
+        context = new ClassPathXmlApplicationContext("spring.xml");
+        algo = (CrypticAlgo)context.getBean("basicElGamal");
+        return algo.getEncryptionDataSet();
+    }
+
+    @Override
+    public XYSeries getDecryptionDataSet() {
+        return algo.getDecryptionDataSet();
     }
     
 }

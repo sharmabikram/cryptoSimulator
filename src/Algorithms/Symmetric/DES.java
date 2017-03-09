@@ -29,12 +29,32 @@ public class DES implements Algorithms.CrypticAlgo{
     long sTime, eTime;
     CrypticObject crypt = new CrypticObject(); 
     
-    private static XYSeries point;
+    private static XYSeries pointEncrypt, pointDecrypt;
     static {
-        point = new XYSeries("DES");
-        for(int i = 0; i<10; ++i){
-            point.add(i, i+5);
-        }
+        pointEncrypt = new XYSeries("DES");
+        pointDecrypt = new XYSeries("DES");
+        // hardcoded data set
+        pointEncrypt.add(1, 0.033);
+        pointEncrypt.add(2, 0.066);
+        pointEncrypt.add(3, 0.098);
+        pointEncrypt.add(4, 0.133);
+        pointEncrypt.add(5, 0.179);
+        pointEncrypt.add(6, 0.204);
+        pointEncrypt.add(7, 0.239);
+        pointEncrypt.add(8, 0.27);
+        pointEncrypt.add(9, 0.316);
+        pointEncrypt.add(10, 0.351);
+        
+        pointDecrypt.add(1, 0.035);
+        pointDecrypt.add(2, 0.069);
+        pointDecrypt.add(3, 0.106);
+        pointDecrypt.add(4, 0.134);
+        pointDecrypt.add(5, 0.169);
+        pointDecrypt.add(6, 0.214);
+        pointDecrypt.add(7, 0.239);
+        pointDecrypt.add(8, 0.269);
+        pointDecrypt.add(9, 0.302);
+        pointDecrypt.add(10, 0.343);
     }
     
     public DES(){
@@ -82,9 +102,14 @@ public class DES implements Algorithms.CrypticAlgo{
         return crypt;
     }
 
-     public XYSeries getDataSet() {
+    public XYSeries getEncryptionDataSet() {
     
-            return point;  
+            return pointEncrypt;  
+    }
+    
+    public XYSeries getDecryptionDataSet() {
+    
+            return pointDecrypt;  
     }
     
 }

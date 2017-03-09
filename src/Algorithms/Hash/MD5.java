@@ -51,8 +51,14 @@ public class MD5 implements Algorithms.CrypticAlgo{
     }
 
     
-    public XYSeries getDataSet() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public XYSeries getEncryptionDataSet() {
+    
+            return null;  
+    }
+    
+    public XYSeries getDecryptionDataSet() {
+    
+            return null;  
     }
     
 }
