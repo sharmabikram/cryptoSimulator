@@ -165,7 +165,7 @@
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="plainLabel" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cipherLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="decryptedLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -316,10 +316,12 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="fileNameField" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="browseButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="fileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="browseButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -330,15 +332,17 @@
                               <Component id="applyButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="sizeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="sizeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="eTimeField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="eUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dTimeField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="eTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="sizeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sizeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="eUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dTimeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="eTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
