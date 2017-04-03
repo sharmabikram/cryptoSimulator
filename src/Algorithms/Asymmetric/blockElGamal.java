@@ -41,13 +41,13 @@ public class blockElGamal implements Algorithms.CrypticAlgo{
         
         while(beg < length)
         {
-                end = (beg+20>=length)?(length):(beg+20);
+                end = (beg+19>=length)?(length):(beg+19);
                 msgBytes = Arrays.copyOfRange(message, beg, end);
                 tmp = algo.encrypt(msgBytes);
                 
                 crypt.time += tmp.time;
                 crypt.data = Arrays.concatenate(crypt.data, tmp.data);
-                beg += 20;
+                beg += 19;
                 
         }
         

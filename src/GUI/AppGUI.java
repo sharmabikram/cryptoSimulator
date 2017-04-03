@@ -135,6 +135,7 @@ public class AppGUI extends javax.swing.JFrame {
         moduleMenu = new javax.swing.JMenu();
         simItem = new javax.swing.JMenuItem();
         analItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         docItem = new javax.swing.JMenuItem();
@@ -143,7 +144,6 @@ public class AppGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoSimulator");
         setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
-        setLocation(new java.awt.Point(100, 100));
         setPreferredSize(new java.awt.Dimension(750, 550));
         setResizable(false);
 
@@ -471,9 +471,6 @@ public class AppGUI extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        modulePane.setLayer(simPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        modulePane.setLayer(analPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout modulePaneLayout = new javax.swing.GroupLayout(modulePane);
         modulePane.setLayout(modulePaneLayout);
         modulePaneLayout.setHorizontalGroup(
@@ -482,16 +479,15 @@ public class AppGUI extends javax.swing.JFrame {
                 .addComponent(simPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(analPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         modulePaneLayout.setVerticalGroup(
             modulePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(modulePaneLayout.createSequentialGroup()
-                .addGroup(modulePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(analPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(simPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(analPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(simPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+        modulePane.setLayer(simPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        modulePane.setLayer(analPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         moduleMenu.setText("Module");
 
@@ -510,6 +506,14 @@ public class AppGUI extends javax.swing.JFrame {
             }
         });
         moduleMenu.add(analItem);
+
+        jMenuItem1.setText("BB84");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        moduleMenu.add(jMenuItem1);
 
         exitItem.setText("Exit");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
@@ -773,6 +777,12 @@ public class AppGUI extends javax.swing.JFrame {
         symmetricList.clearSelection();
         asymmetricList.clearSelection();
     }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        //this.setVisible(false);
+        BB84GUI obj = new BB84GUI();
+        obj.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     public void plotGraphEncryption(){
        
         
@@ -891,6 +901,7 @@ public class AppGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fileNameField;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
